@@ -24,6 +24,13 @@ mongoose
   .then(() => console.log("MongoDB Connected ✔"))
   .catch((err) => console.log("DB Error:", err));
 
+
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT} 🚀`)
 );
